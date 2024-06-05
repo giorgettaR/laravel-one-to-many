@@ -48,6 +48,7 @@
     </div>
     <div class="container">
       <ul>
+        <li>Tipologia:<br>{{ $project->type ? $project->type->name : 'non specificata' }}</li>
         <li>Link GitHub:<br><a href="{{ $project->repository_link }}">Progetto</a></li>
         <li>Linguaggi:<br>{{ $project->languages }}</li>
         <li>Softwares<br>{{ $project->softwares }}</li>
