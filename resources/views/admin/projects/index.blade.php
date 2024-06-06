@@ -21,6 +21,7 @@
   <thead>
     <tr>
       <th>Titolo</th>
+      <th>Tipologia</th>
       <th>Descrizione</th>
       <th>Link GitHub</th>
       <th>Linguaggi</th>
@@ -32,6 +33,7 @@
     @foreach ($projects as $project)
       <tr>
         <td>{{ $project->title }}</td>
+        <td>{{ $project->type->name }}</td>
         <td>{{ $project->description }}</td>
         <td><a href="{{ $project->repository_link }}">Progetto</a></td>
         <td>{{ $project->languages }}</td>

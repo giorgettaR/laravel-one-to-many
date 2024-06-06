@@ -6,10 +6,10 @@
 
 <main>
   <section>
-    <div class="container">
+    <div class="container p-4">
       <div class="row">
         <div class="col-auto">
-            <h1 class="fs-2 p-4">Titolo: {{ $project->title }}</h1>
+            <h1 class="fs-2 ">Titolo: {{ $project->title }}</h1>
         </div>
         <div class="col-auto ms-auto">
           <div class="d-flex gap-2">
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container p-4">
       <ul>
         <li>Tipologia:<br>{{ $project->type ? $project->type->name : 'non specificata' }}</li>
         <li>Link GitHub:<br><a href="{{ $project->repository_link }}">Progetto</a></li>
@@ -55,13 +55,30 @@
         <li>Autori<br>{{ $project->authors }}</li>
       </ul>
     </div>
-    <div class="container">
+    <div class="container p-4p-4">
       <div class="row">
         <div class="col-4">
           {!! $project->description !!}
         </div>
         <div class="col-8">
           <img src="{{ $project->image_link }}" alt="">
+        </div>
+      </div>
+      <div class="row pt-2">
+        <div class="col-12">
+          <h5>Progetti della stessa tipologia:</h5>
+
+          @if ($project->type)
+            @foreach($project->type->project as $same_type_project)
+              @if ($same_type_project->slug !== $project->slug)
+                  <a href="{{ route('admin.projects.show',$same_type_project) }}" class="me-2">
+                    {{ $same_type_project->title }}  
+                  </a>
+              @endif
+            @endforeach
+          @else
+            <h6>Nessun progetto trovato</h6>
+          @endif
         </div>
       </div>
     </div>
